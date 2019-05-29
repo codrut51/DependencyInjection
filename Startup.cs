@@ -1,3 +1,4 @@
+using Dependencies.Database;
 using Dependencies.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,10 @@ namespace Dependencies
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddSingleton(typeof(ICache), typeof(FileCache));
+            //services.AddSingleton(typeof(ICache), typeof(FileCache));
+            //services.AddSingleton<ICache, FileCache>();
+            services.AddSingleton<IDatabase, DatabaseImpl>(_ => new DatabaseImpl(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddSingleton<IUser, UsersQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
