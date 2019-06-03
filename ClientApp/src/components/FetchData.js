@@ -11,6 +11,7 @@ export class FetchData extends Component {
           .then(response => response.json())
           .then(data => {
               this.setState({ result: data, loading: false });
+              console.log(data);
           }).catch(err => {
               console.log(err.message);
           });
@@ -23,8 +24,16 @@ export class FetchData extends Component {
         const { target } = e;
         const { value, name } = target;
         switch(name)
-        let newMsg = e.target.value;
-        this.setState({ message: newMsg })
+        {
+          case "username":
+              this.setState({ username: value });
+              break;
+          case "password":
+              this.setState({ password: value });
+              break;
+          default:
+            break;
+        }
     }
 
     async clickEvent() {
@@ -54,6 +63,7 @@ export class FetchData extends Component {
         }).catch(err => {
             console.log(err.message);
         });;
+        
     }
 
   static renderForecastsTable (result) {
@@ -67,23 +77,14 @@ export class FetchData extends Component {
           </tr>
         </thead>
             <tbody>
-                {/*result.map(res => (<tr>
-                    <td>{res.key}</td>
-                    <td>{res.value}</td>
-                    </tr>
-                ))*/}
                 {
-                //     Object.keys(result).map((element, index) => (
-                //         <tr key={index}>
-                //         <td>{element}</td>
-                //         <td>{result[element]}</td>
-                //     </tr>
-                // ))
-                <tr>
-                  <td></td>
-                  <td><input type="text" name="username" value={this.state.username} onChange={(e) => { this.onChange(e); }} /> </td>
-                  <td><input type="text" name="password" value={this.state.password} onChange={(e) => { this.onChange(e); }} /> </td>
-                </tr>
+                    Object.keys(result).map((element, index) => (
+                        <tr key={index}>
+                        <td>{result[element].user_id}</td>
+                        <td>{result[element].username}</td>
+                        <td>{result[element].password}</td>
+                    </tr>
+                ))
             }
             
         </tbody>
@@ -98,10 +99,8 @@ export class FetchData extends Component {
 
     return (
       <div>
-        <h1>Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-            <p> <button onClick={this.clickEvent}>AddUser</button> </p>
+          <p>Users</p>
+          {contents}
       </div>
     );
   }

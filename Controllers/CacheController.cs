@@ -13,17 +13,17 @@ namespace Dependencies.Controllers
     public class CacheController : ControllerBase
     {
         // GET: api/Cache
-        private readonly IUser _cache;
+        private readonly IUser _user;
 
-        public CacheController(IUser cache) 
+        public CacheController(IUser user) 
         {
-            _cache = cache;
+            _user = user;
         } 
 
         [HttpGet]
         public List<User> Get()
         {
-            return _cache.GetUsers().Result;
+            return _user.GetUsers().Result;
         }
 
         //// GET: api/Cache/5
@@ -40,7 +40,7 @@ namespace Dependencies.Controllers
         [HttpPost]
         public async Task<User> Post([FromBody] User user)
         {
-            await _cache.AddUser(user);
+            await _user.AddUser(user);
             return user;
         }
 

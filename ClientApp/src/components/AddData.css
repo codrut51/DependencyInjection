@@ -1,0 +1,39 @@
+.form {
+    width: 100%;
+    height: 50vh;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    overflow: hidden;
+}
+
+#input_fields {
+    border: 1px solid black;
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    overflow: hidden;
+    grid-template-rows: 5fr 3fr 1fr 3fr 5fr 3fr;
+    grid-template-columns: 1fr 4fr 4fr 1fr;
+}
+
+#insert {
+    grid-column: 2 / 4;
+    grid-row: 6;
+}
+
+#username {
+    grid-column: 2 / 4;
+    grid-row: 2;
+}
+
+#password {
+    grid-column: 2 / 4;
+    grid-row: 4;
+}
+
+#status {
+    grid-column: 2 / 4;
+    grid-row: 1;
+    text-align: center;
+}
